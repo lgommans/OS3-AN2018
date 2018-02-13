@@ -107,7 +107,7 @@ TODO
 
 TODO
 
-\subsection{Q2.1 Plot a graph showing the CWND and ssthresh versus time with all the data you get. These two metrics are in one graph.}
+\subsection{Q2.1 Plot a graph showing the CWND and ssthresh versus time with all the data you get. These two metrics are in one graph.}\label{sec:q21}
 
 \begin{figure}[H]
 	\includegraphics{lab1-group1-task2-question1.png}
@@ -117,35 +117,129 @@ TODO
 
 \subsection{Q2.2 Briefly discuss the changing process.}
 
+We see that it initally starts in slow start, until the source received three
+duplicate ACKs. It then transitions to fast recovery, where it slowly increases
+the congestion window until it receives a new ACK. We are now in congestion
+avoidance. From there we see multiple transitions between congestion avoidance
+and fast recovery, as we see the threshold halving and the CWND is adjusted to
+\texttt{ssthresh + 3MSS}.
+
+
 \subsection{Q2.3 Plot a graph showing CWND versus time with all the data you get.}
 
 \begin{figure}[H]
 	\includegraphics{lab1-group1-task2-question3.png}
-	%\label{fig:dinges}
+	\label{fig:q23}
 \end{figure}
 
 
 \subsection{Q2.4 Compare this graph with the one from}
 
+Both graphs start similarly. The relatively fast, oscillating changes between
+the fast recovery and congestion avoidance states, are much slower in the
+latter (figure \ref{fig:q23}).
+
+
 \subsection{Q2.5 Plot a graph showing CWND and ssthresh versus time with all the data you get.}
+
+\begin{figure}[H]
+	%\caption{dinges}
+	\includegraphics{lab1-group1-task2-question5.png}
+	%\label{fig:dinges}
+\end{figure}
+
 
 \subsection{Q2.6 Compare this graph with the graph of}
 
+In this graph, the congestion window never reaches the same levels as in
+previous exercises. At the peak of slow start, it is just over $70*MSS$. Here
+we see a very fast oscillation between fast recovery and congestion avoidance.
+It does not go back to slow start, because it never starts again with 1MSS.
+This implies the throughput is much lower than in subsection \ref{sec:q21}.
+
+
 \subsection{Q2.7 Zoom in the graph of this scenario (plot some parts of this scenario in a short duration, 10 or 20 seconds). Briefly explain the changing process.}
+
+\begin{figure}[H]
+	%\caption{dinges}
+	\includegraphics{lab1-group1-task2-question7.png}
+	%\label{fig:dinges}
+\end{figure}
+
+Due to the relatively high percentage of packet loss, this connection is quite
+unstable. We see the same pattern as previously, oscillating between congestion
+avoidance and fast recovery, but the lowest points are as much as 8 times lower
+than the peaks. Previously, the highest difference observed was around 2.8
+times.
+
 
 \subsection{Q2.8 Show a screen capture of the real throughput in this scenario.}
 
+\begin{figure}[H]
+	%\caption{dinges}
+	\includegraphics{lab1-group1-task2-question8.png}
+	%\label{fig:dinges}
+\end{figure}
+
+
 \subsection{Q2.9 Plot a graph showing CWND and ssthresh versus time with all the data you get.}
+
+\begin{figure}[H]
+	%\caption{dinges}
+	\includegraphics{lab1-group1-task2-question9.png}
+	%\label{fig:dinges}
+\end{figure}
+
 
 \subsection{Q2.10 Compare this graph with the graph of}
 
+The main difference which catches the eye, is that it has differently-shaped,
+smooth curves in the congestion window. When looking up how CUBIC works, we see
+this pattern explained many times as being fast growth upon reduction on a
+packet loss event, and slower probing for the maximum throughput.
+
+
 \subsection{Q2.11 Plot a graph showing CWND and ssthresh versus time with all the data you get.}
+
+\begin{figure}[H]
+	%\caption{dinges}
+	\includegraphics{TODO}
+	%\label{fig:dinges}
+\end{figure}
+
 
 \subsection{Q2.12 Compare this graph with the graph of scenario three and show the differences.}
 
+CUBIC generally seems less aggressive. In the slow start state, it does not
+reach as high as Reno ($42*MSS$ versus $71*MSS$). In the later states, it
+decreases less far and usually goes down to $4*MSS$ or sometimes $3*MSS$. Reno
+shows more fluctuations than CUBIC; therefore, CUBIC seems to be more stable in
+those circumstances.
+
+
 \subsection{Q2.13 Zoom in the graph of this scenario (plot some parts of this scenario in a short duration, 10 or 20 seconds). Briefly explain the changing process and compare it with the graph of}
 
+\begin{figure}[H]
+	%\caption{dinges}
+	\includegraphics{TODO}
+	%\label{fig:dinges}
+\end{figure}
+
+Here, too, we see that CUBIC is more stable than reno. The difference between
+the minimum and maximum value, is higher in Reno. The frequency of the state
+changes, is also higher in Reno.
+
+
 \subsection{Q2.14 Show a screen capture of the real throughput and compare it with throughput of}
+
+\begin{figure}[H]
+	%\caption{dinges}
+	\includegraphics{TODO}
+	%\label{fig:dinges}
+\end{figure}
+
+Reno has a higher throughput than CUBIC.
+
 
 \subsection{Q3.1 Explain what an LFN network is. Change the simulation parameters to your likings and demonstrate that TcpNewReno is not suitable for LFN networks.}
 
