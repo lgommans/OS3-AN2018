@@ -159,7 +159,7 @@ latter (figure \ref{fig:q23}). The congestion avoidance states in figure \ref{fi
 \begin{figure}[H]
 	\includegraphics{lab1-group1-task2-question5.png}
 	\caption{T2Q5 CWND and ssthresh 0 to 200 seconds with packet loss}
-	%\label{fig:dinges}
+	\label{fig:q25}
 \end{figure}
 
 
@@ -314,8 +314,18 @@ difference visible, is attributed to random variance.
 
 
 \subsection{Q3.4 Replicate scenario 3 of the emulation: packet loss of 3\%, delay of 50 ms and transfer duration of 200sec. Use TcpNewReno. Compare the two results.}
+The plot from \texttt{ns3} is shown in figure \ref{fig:lastquestion}.
 
+\begin{figure}[H]
+	\includegraphics{lab1-group1-task3-question4.png}
+	\caption{CWND and ssthresh 0 to 200 seconds for TCPNewReno with packet loss and delay}
+	\label{fig:q34}
+\end{figure}
 
+The results in ns3 compared to scenario 3 show different data. Figure \ref{fig:q34} shows the size in bytes of $cwnd$ and $ssthresh$, while figure \ref{fig:q25}
+shows the amount of segments. The amount of segments sent according to figure \ref{fig:q25} fluctuates more than the size of $cwnd$ in bytes. The default MTU in ns3 is 400 bytes.
+We see that it subtracts the IP-header, TCP-header and 20 bytes resulting in an MSS of 340 bytes. If we divide the window sizes at multiple points in figure \ref{fig:q34} by
+340 bytes, the resulting amount of segments corresponds to the amount of segments from figure \ref{fig:q25}. This is however, not exactly checked due to the density of figure \ref{fig:q25}.
 
 
 \subsection{Q3.5 After these experiments, please briefly describe the difference between simulation and emulation?}
