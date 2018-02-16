@@ -1,0 +1,6 @@
+echo "reno" > /proc/sys/net/ipv4/tcp_congestion_control
+
+source: 
+modprobe tcp_probe port=5001 full=1
+cat /proc/net/tcpprobe > reno.data &
+tc qdisc add dev eth0 root handle 1:0 netem delay 50ms loss 0%
