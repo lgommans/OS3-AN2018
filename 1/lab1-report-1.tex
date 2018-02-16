@@ -118,8 +118,8 @@ TODO
 
 
 \subsection{Q1.7 Discuss and motivate the differences you observe between the NewReno and this algorithm.}
+For NewReno we see that fast recovery occurs within a shorter timeframe compared to TCPWestWood. TCPNewReno however, appears to have a higher initial peak. It appears that TCPWestwood acts differently in the congestion avoidance phase as we see the window slightly decreasing. Both algorithms show a time-out afterwards. After the sizes have been recovered again, the algorithms show the same behavior. The maximum peak of $cwnd$ is shown at 850 bytes and the minimum peak of $cwnd$ is shown at 340 bytes.
 
-TODO
 
 \subsection{Q2.1 Plot a graph showing the CWND and ssthresh versus time with all the data you get. These two metrics are in one graph.}\label{sec:q21}
 
@@ -266,6 +266,22 @@ the latency is larger than 12 500 bytes per second. It stands for `long, fat
 network'.
 
 
+\begin{figure}[H]
+	\includegraphics[width=0.8\textwidth]{lab1-group1-task3-question1-1.png}
+	\caption{T3Q1 LFN Enabled on TCPNewReno 0 to 100 seconds}
+	\label{fig:q311}
+\end{figure}
+
+
+\begin{figure}[H]
+	\includegraphics[width=0.8\textwidth]{lab1-group1-task3-question1-2.png}
+	\caption{T3Q1 LFN Enabled on TCPNewReno 23 to 100 seconds}
+	\label{fig:q312}
+\end{figure}
+
+Figure \ref{fig:q311} shows a long slow start and congestion avoidance phase of approximately 20 seconds, which is followed by a low throughput. This is depicted in figure \ref{fig:q312}.
+We configured the network to have a throughput of 500 Mbps and a delay of 300ms. We see that TCPNewReno does not reach 500 Mbps by far. Therefore TCPNewReno is not suitable for LFN networks.
+
 \subsection{Q3.2 Explain SACK does. Change the simulation parameters to your likings and demonstrate the performance improvement with SACK.}
 
 Defined in RFC 2018, SACK allows receivers to indicate they have received segments which are not contiguous.
@@ -276,7 +292,7 @@ Defined in RFC 2018, SACK allows receivers to indicate they have received segmen
 	\label{fig:q32}
 \end{figure}
 
-According to figure \ref{fig:q32} higher bandwidths are reached and less fluctuations are shown during the simulation, compared to the previous experiments without SACK enabled.
+According to figure \ref{fig:q32} higher bandwidths are reached and fewer fluctuations are shown during the simulation, compared to the previous experiments without SACK enabled.
 
 
 \subsection{Q3.3 Explain with TCP fairness is. Show the effect of multiple flows in the simulation.}
