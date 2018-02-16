@@ -258,12 +258,17 @@ Reno has a higher throughput than CUBIC.
 
 \subsection{Q3.1 Explain what an LFN network is. Change the simulation parameters to your likings and demonstrate that TcpNewReno is not suitable for LFN networks.}
 
-An LFN (`elephant') 
+An LFN (`elephant') network has a DBP (Delay-Bandwidth Product) which is
+`significantly' larger than $10^{5}$ bits, i.e. multiplying the bandwidth and
+the latency is larger than 12 500 bytes per second. It stands for `long, fat
+network'.
 
 
 \subsection{Q3.2 Explain SACK does. Change the simulation parameters to your likings and demonstrate the performance improvement with SACK.}
 
+Defined in RFC 2018, SACK allows receivers to indicate they have received segments which are not contiguous.
 
+TODO simulation
 
 
 \subsection{Q3.3 Explain with TCP fairness is. Show the effect of multiple flows in the simulation.}
