@@ -100,8 +100,6 @@ After the fast recovery state we see that the algorithm goes to the slow start s
 
 \subsection{Q1.6 Find the points where the slow-start, congestion-avoidance, fast retransmit/fast recovery states begin.}
 
-TODO
-
 \begin{table}[H]
 \center
 \caption{Points of state transitions WestWood algorithm}
@@ -109,12 +107,26 @@ TODO
 \begin{tabular}{|c|p{25mm}|p{20mm}|c|c|}
 \hline Time (s)    & Current CWND (bytes)    & New CWND (bytes)    & New State             & Event            \\
 \hline 0.00000     & 0                       & 340                 & slow-start            & start            \\ 
-\hline 1.21176     & 163 882                 & 82 790              & fast-recovery         & dupACKcount==3   \\ 
-\hline ???????     & 326 570                 & 340                 & slow-start            & timeout          \\ 
-\hline 2.54903     & 151 810                 & 340                 & fast-recovery         & TODO \\ 
+\hline 1.93189     & 109480                  & 1700                & fast-recovery         & dupACKcount==3   \\ 
+\hline 2.26758     & 74 120                  & 73 100              & congestion avoidance  & New ACK  \\ 
+\hline 3.19086     & 66 640                  & 340                 & fast-recovery         & dupACKcount==3 \\ 
 \hline  
 \end{tabular} 
 \end{table}
+
+
+
+The strange part of this graph is the section between 2.2 and 3.3 seconds,
+where the congestion window slowly decreases. We could initially not attribute
+it to the state machine, nor could we find a paper which described this
+behavior. Looking in the source code of NS3, we believe the following line
+is responsible for it:
+
+\texttt{m\_currentBW = m\_ackedSegments * tcb->m\_segmentSize / rtt.GetSeconds ();}
+
+Because the estimated RTT increases, the current bandwidth estimate decreases
+from 11 301 to 3081. All other variables in the source code appear to be
+increasing, therefore it must be this declaration.
 
 
 \subsection{Q1.7 Discuss and motivate the differences you observe between the NewReno and this algorithm.}
