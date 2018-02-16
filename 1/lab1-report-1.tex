@@ -306,6 +306,20 @@ difference visible, is attributed to random variance.
 
 \subsection{Q3.5 After these experiments, please briefly describe the difference between simulation and emulation?}
 
+\begin{quote}
+,,Emulation is the process of mimicking the outwardly observable behavior to
+match an existing target. The internal state of the emulation mechanism does
+not have to accurately reflect the internal state of the target which it is
+emulating.
+
+Simulation, on the other hand, involves modeling the underlying state of the
+target. The end result of a good simulation is that the simulation model will
+emulate the target which it is simulating.''
+\end{quote}
+
+From Toybuilder on StackOverflow\cite{toybuilder}.
+
+In our case, the emulator is NS3 and the simulation is done using iperf.
 
 
 \printbibliography
