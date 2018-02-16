@@ -14,7 +14,7 @@ o: open
 deps:
 	# There might be more dependencies, but these were the ones I did not have installed by default
 	sudo apt-get install --no-install-recommends texlive-latex-extra
-	sudo apt install pdfgrep
+	sudo apt install pdfgrep inotify-tools
 
 clean:
 	rm $(texfile)-blx.bib *.aux *.bcf *.pdf *.log *.bbl *.blg *.out *.run.xml *.synctex.gz || :

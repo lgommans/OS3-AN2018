@@ -1,5 +1,6 @@
 \documentclass{article}
 
+\bibliography{references.bib}
 \usepackage{url,graphicx,tabularx,array,geometry, hyperref}
 \usepackage{listings}
 \usepackage{fullpage}
@@ -257,12 +258,70 @@ Reno has a higher throughput than CUBIC.
 
 \subsection{Q3.1 Explain what an LFN network is. Change the simulation parameters to your likings and demonstrate that TcpNewReno is not suitable for LFN networks.}
 
+An LFN (`elephant') 
+
+
 \subsection{Q3.2 Explain SACK does. Change the simulation parameters to your likings and demonstrate the performance improvement with SACK.}
+
+
+
 
 \subsection{Q3.3 Explain with TCP fairness is. Show the effect of multiple flows in the simulation.}
 
+As described by Gorp and Gommans\cite{gg}:
+
+\begin{quote}
+	,,In datacenters, multiple tenants share a finite amount of bandwidth. When an uplink
+	is saturated, packets that overflow available buffer space will be dropped and have to
+	be retransmitted by the sender. When one tenant chooses to retransmit faster than
+	others, they have an advantage as they will make it though more quickly. TCP is
+	a connection-oriented protocol which employs congestion control algorithms. These
+	algorithms aim to divide the available bandwidth equally between network flows.
+
+	Some congestion control algorithms are more aggressive than others, and it has been
+	reported that some algorithms cause others to back off excessively. Tenants may,
+	perhaps inadvertently, cause unequal bandwidth distributions during times of congestion.''
+\end{quote}
+
+While no case was found of unfairness, other than Microsoft Windows' CTCP (but
+that behaviour was so strange that its test was labeled inconclusive), some
+have much better performance in specific scenarios. In figure
+\ref{fig:cubic-bic-8-12}, CUBIC and BIC are shown to perform comparatively in
+high loss conditions. In figure \ref{fig:cubic-bbr-8-12}, the same situation is
+shown but with CUBIC and BBR. In figure \ref{fig:cubic-bic-8-0}, CUBIC is
+compared with BIC with 8ms delay and 0\% loss. It is shown that the algorithms
+perform equally and allocate an amount of bandwidth so equal that on this
+scale, no difference is visible at all during the majority of the test. Any
+difference visible, is attributed to random variance.
+
+\begin{figure}[H]
+	\includegraphics{cubic_vs_bic_8_12.png}
+	\caption{CUBIC vs. BIC, 8ms delay, 1.2\% loss}
+	\label{fig:cubic-bic-8-12}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics{cubic_vs_bbr_8_12.png}
+	\caption{CUBIC vs. BBR, 8ms delay, 1.2\% loss}
+	\label{fig:cubic-bbr-8-12}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{cubic-bic-8-0.png}
+	\caption{CUBIC vs. BIC, 8ms delay, 0\% loss}
+	\label{fig:cubic-bic-8-0}
+\end{figure}
+
+
 \subsection{Q3.4 Replicate scenario 3 of the emulation: packet loss of 3\%, delay of 50 ms and transfer duration of 200sec. Use TcpNewReno. Compare the two results.}
 
+
+
+
 \subsection{Q3.5 After these experiments, please briefly describe the difference between simulation and emulation?}
+
+
+
+\printbibliography
 
 \end{document}
