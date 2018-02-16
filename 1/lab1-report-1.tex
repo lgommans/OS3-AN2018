@@ -8,6 +8,7 @@
 \usepackage{framed}
 \usepackage{lastpage}
 \usepackage{fancyhdr}
+\usepackage{float}
 
 \renewcommand{\headrulewidth}{0pt}
 \setcounter{secnumdepth}{0}
@@ -57,10 +58,15 @@
 
 
 \subsection{Q1.3 Find the points where the slow-start, congestion-avoidance, fast retransmit/fast recovery states begin.}
-
-TODO
+Table \ref{table:results1} shows the points where the slow-start, congestion-avoidance and fast recovery states begin.
+The results are based on the reno datafiles generated in the vagrant boxes and the states described in the slidedeck of lecture 1.
+We found the slow-start state starts at 0 seconds and is followed by the fast recovery state as $ssthresh$ halves and $cwnd$ becomes 3 higher than $ssthresh$.
+After the fast recovery state we see that the algorithm goes to the slow start state again and then, after some time $cwnd$ exceeds $ssthresh$. From here the transition from slow start to congestion-avoidance occured.
 
 \begin{table}[H]
+\center
+\caption{Points of state transitions NewReno algorithm}
+\label{table:results1}
 \begin{tabular}{|c|p{25mm}|p{20mm}|c|c|}
 \hline Time (s)    & Current CWND (bytes)    & New CWND (bytes)    & New State             & Event            \\
 \hline 0.00000     & 0                       & 340                 & slow-start            & start            \\ 
@@ -77,6 +83,7 @@ TODO
 \begin{figure}[H]
 	\includegraphics{lab1-group1-task1-question4.png}
 	%\label{fig:dinges}
+	\caption{T1Q4 CWND from 0 to 100 seconds}
 \end{figure}
 
 
@@ -85,6 +92,7 @@ TODO
 \begin{figure}[H]
 	\includegraphics{lab1-group1-task1-question5.png}
 	%\label{fig:dinges}
+	\caption{T1Q5 SSTH from 0 to 100 seconds}
 \end{figure}
 
 
@@ -93,6 +101,9 @@ TODO
 TODO
 
 \begin{table}[H]
+\center
+\caption{Points of state transitions WestWood algorithm}
+\label{table:results2}
 \begin{tabular}{|c|p{25mm}|p{20mm}|c|c|}
 \hline Time (s)    & Current CWND (bytes)    & New CWND (bytes)    & New State             & Event            \\
 \hline 0.00000     & 0                       & 340                 & slow-start            & start            \\ 
@@ -112,7 +123,8 @@ TODO
 
 \begin{figure}[H]
 	\includegraphics{lab1-group1-task2-question1.png}
-	%\label{fig:dinges}
+	\label{fig:q21}
+	\caption{T2Q1 CWND and ssthresh 0 to 200 seconds}
 \end{figure}
 
 
@@ -131,6 +143,7 @@ and fast recovery, as we see the threshold halving and the CWND is adjusted to
 \begin{figure}[H]
 	\includegraphics{lab1-group1-task2-question3.png}
 	\label{fig:q23}
+	\caption{T2Q3 CWND and ssthresh 0 to 200 seconds}
 \end{figure}
 
 
@@ -138,14 +151,14 @@ and fast recovery, as we see the threshold halving and the CWND is adjusted to
 
 Both graphs start similarly. The relatively fast, oscillating changes between
 the fast recovery and congestion avoidance states, are much slower in the
-latter (figure \ref{fig:q23}).
+latter (figure \ref{fig:q23}). The congestion avoidance states in figure \ref{fig:q23} hold for a longer time than in figure \ref{fig:q21}. 
 
 
 \subsection{Q2.5 Plot a graph showing CWND and ssthresh versus time with all the data you get.}
 
 \begin{figure}[H]
-	%\caption{dinges}
 	\includegraphics{lab1-group1-task2-question5.png}
+	\caption{T2Q5 CWND and ssthresh 0 to 200 seconds with packet loss}
 	%\label{fig:dinges}
 \end{figure}
 
@@ -162,8 +175,8 @@ This implies the throughput is much lower than in subsection \ref{sec:q21}.
 \subsection{Q2.7 Zoom in the graph of this scenario (plot some parts of this scenario in a short duration, 10 or 20 seconds). Briefly explain the changing process.}
 
 \begin{figure}[H]
-	%\caption{dinges}
 	\includegraphics{lab1-group1-task2-question7.png}
+	\caption{T2Q7 CWND and ssthresh 0 to 200 seconds with packet loss zoomed in}
 	%\label{fig:dinges}
 \end{figure}
 
@@ -177,17 +190,17 @@ times.
 \subsection{Q2.8 Show a screen capture of the real throughput in this scenario.}
 
 \begin{figure}[H]
-	%\caption{dinges}
-	\includegraphics{lab1-group1-task2-question8.png}
+	\includegraphics[width=0.8\textwidth]{lab1-group1-task2-question8.png}
 	%\label{fig:dinges}
+	\caption{T2Q8 Throughput of Reno algorithm}
 \end{figure}
 
 
 \subsection{Q2.9 Plot a graph showing CWND and ssthresh versus time with all the data you get.}
 
 \begin{figure}[H]
-	%\caption{dinges}
 	\includegraphics{lab1-group1-task2-question9.png}
+	\caption{T2Q9 CWND and ssthresh 0 to 200 seconds (CUBIC)}
 	%\label{fig:dinges}
 \end{figure}
 
@@ -203,8 +216,8 @@ packet loss event, and slower probing for the maximum throughput.
 \subsection{Q2.11 Plot a graph showing CWND and ssthresh versus time with all the data you get.}
 
 \begin{figure}[H]
-	%\caption{dinges}
-	\includegraphics{TODO}
+	\includegraphics{lab1-group1-task2-question11.png}
+	\caption{T2Q11 CWND and ssthresh 0 to 200 seconds (CUBIC) with packet loss}
 	%\label{fig:dinges}
 \end{figure}
 
@@ -221,21 +234,22 @@ those circumstances.
 \subsection{Q2.13 Zoom in the graph of this scenario (plot some parts of this scenario in a short duration, 10 or 20 seconds). Briefly explain the changing process and compare it with the graph of}
 
 \begin{figure}[H]
-	%\caption{dinges}
-	\includegraphics{TODO}
+	\includegraphics{lab1-group1-task2-question13.png}
+	\caption{T2Q13 CWND and ssthresh 0 to 200 seconds (CUBIC) with packet loss zoomed in}
 	%\label{fig:dinges}
 \end{figure}
 
 Here, too, we see that CUBIC is more stable than reno. The difference between
 the minimum and maximum value, is higher in Reno. The frequency of the state
-changes, is also higher in Reno.
+changes is also higher in Reno.
 
 
 \subsection{Q2.14 Show a screen capture of the real throughput and compare it with throughput of}
 
 \begin{figure}[H]
 	%\caption{dinges}
-	\includegraphics{TODO}
+	\includegraphics[width=0.8\textwidth]{lab1-group1-task2-question14.png}
+	\caption{T2Q14 Throughput of CUBIC algorithm}
 	%\label{fig:dinges}
 \end{figure}
 
