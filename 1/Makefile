@@ -3,6 +3,7 @@ bibfile = references.bib
 
 build:
 	pdflatex -interaction=nonstopmode $(texfile).tex
+	bibtex $(texfile)
 	pdflatex $(texfile).tex
 	pdflatex $(texfile).tex
 
@@ -25,6 +26,7 @@ edit:
 e: edit
 
 once:
+	bibtex $(texfile)
 	pdflatex -interaction=nonstopmode $(texfile).tex
 
 buildOnChange:
